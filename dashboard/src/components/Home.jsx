@@ -1,87 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import {
-//   Modal,
-//   ModalContent,
-//   ModalHeader,
-//   ModalBody,
-//   ModalFooter,
-//   Button,
-//   useDisclosure,
-//   Input,
-// } from "@nextui-org/react";
-
-// function Home() {
-//   const [profile, setProfile] = useState([]);
-//   // For Modal
-//   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
-//   useEffect(() => {
-//     const fetchProfile = async () => {
-//       try {
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     };
-//     fetchProfile();
-//   }, []);
-
-//   return (
-//     <React.Fragment>
-//       <div className="text-center">
-//         <img
-//           src={profile.avatar}
-//           alt="Profile"
-//           className="rounded-full w-32 h-32 mx-auto mb-4"
-//         />
-//         <h2 className="text-2xl font-bold mb-2">{profile.name}</h2>
-//         <p className="mb-4">{profile.description}</p>
-//         <Button onClick={onOpen} color="success" className="text-white">
-//           Edit
-//         </Button>
-//       </div>
-//       {/* Modal */}
-//       <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
-//         <ModalContent>
-//           {(onClose) => (
-//             <>
-//               <ModalHeader className="flex flex-col gap-1">Log in</ModalHeader>
-//               <ModalBody>
-//                 <Input
-//                   autoFocus
-//                   label="Email"
-//                   placeholder="Enter your email"
-//                   variant="bordered"
-//                 />
-//                 <Input
-//                   label="Password"
-//                   placeholder="Enter your password"
-//                   type="password"
-//                   variant="bordered"
-//                 />
-//                 <div className="flex py-2 px-1 justify-between"></div>
-//               </ModalBody>
-//               <ModalFooter>
-//                 <Button color="danger" variant="flat" onPress={onClose}>
-//                   Close
-//                 </Button>
-//                 <Button color="primary" onPress={onClose}>
-//                   Sign in
-//                 </Button>
-//               </ModalFooter>
-//             </>
-//           )}
-//         </ModalContent>
-//       </Modal>
-//     </React.Fragment>
-//   );
-// }
-
-// export default Home;
-
-// -----------------------------------------------------------------------------------------------------
-
-// Web 3 type design
-
 import React, { useEffect, useState } from "react";
 import {
   Modal,
@@ -92,16 +8,28 @@ import {
   Button,
   useDisclosure,
   Input,
+  Textarea,
+  Image,
+  avatar,
 } from "@nextui-org/react";
+import { FaEdit } from "react-icons/fa";
+import axios from "axios";
 
 function Home() {
-  const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState([]);
+  const [selectedProfile, setSelectedProfile] = useState(null);
+  const [avatar, setAvatar] = useState(null);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        // Fetch profile data from API
+        const response = await fetch("http://localhost:8080/api/profile");
+        const profile = await response.json();
+        if (Array.isArray(profile.data)) {
+          setProfile(profile.data);
+          console.log("Profile Data: ", profile.data);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -109,140 +37,148 @@ function Home() {
     fetchProfile();
   }, []);
 
+  const openModal = (profile) => {
+    setSelectedProfile(profile);
+    onOpen();
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value, files } = e.target;
+    if (name === "avatar" && files && files.length > 0) {
+      setAvatar(files[0]);
+    } else {
+      setSelectedProfile((current) => ({
+        ...current,
+        [name]: value,
+      }));
+    }
+  };
+
+  const onUpdate = async (id) => {
+    try {
+      const formData = new FormData();
+
+      for (let key in selectedProfile) {
+        formData.append(key, selectedProfile[key]);
+      }
+
+      if (avatar) {
+        formData.append("avatar", avatar);
+      }
+
+      const updatedProfile = await axios.put(
+        `http://localhost:8080/api/profile/${id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      
+      if(Array.isArray(updatedProfile.data)) {
+        setProfile(updatedProfile.data);
+      }
+      
+      alert("Profile Updated Successfully");
+    } catch (error) {
+      alert("Something went wrong. Couldn't update profile");
+      console.log(error);
+    }
+  };
+
   return (
-    <div className="bg-white p-8 rounded-lg shadow-lg max-w-3xl mx-auto">
+    <div className="p-8 bg-gradient-to-r from-gray-800 to-gray-700 rounded-lg shadow-lg">
       <div className="text-center">
-        <img
-          src={profile.avatar || "https://via.placeholder.com/150"}
-          alt="Profile"
-          className="rounded-full w-32 h-32 mx-auto mb-4 border-4 border-teal-500"
-        />
-        <h2 className="text-4xl font-extrabold mb-2">{profile.name || "Your Name"}</h2>
-        <p className="text-lg mb-4 text-gray-600">{profile.description || "Profile description goes here."}</p>
-        <Button onClick={onOpen} color="gradient" className="text-white">
-          Edit Profile
-        </Button>
+        {profile.map((data) => (
+          <div key={data._id}>
+            <img
+              src={data.avatar}
+              alt="Profile"
+              className="rounded-full w-32 h-32 mx-auto mb-4 border-4 border-teal-500"
+            />
+            <h2 className="text-4xl font-extrabold mb-2 text-white">
+              {data.name}
+            </h2>
+            <p className="text-lg mb-4 text-white">{data.description}</p>
+            <Button
+              onClick={() => openModal(data)}
+              color="gradient"
+              className="text-white"
+            >
+              <FaEdit /> Edit
+            </Button>
+          </div>
+        ))}
       </div>
 
       {/* Modal */}
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="text-xl font-semibold">Edit Profile</ModalHeader>
-              <ModalBody>
-                <Input
-                  autoFocus
-                  label="Email"
-                  placeholder="Enter your email"
-                  variant="bordered"
-                />
-                <Input
-                  label="Password"
-                  placeholder="Enter your password"
-                  type="password"
-                  variant="bordered"
-                />
-              </ModalBody>
-              <ModalFooter>
-                <Button color="error" variant="flat" onPress={onClose}>
-                  Close
-                </Button>
-                <Button color="gradient" onPress={onClose}>
-                  Save Changes
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
+      {selectedProfile ? (
+        <Modal
+          isOpen={isOpen}
+          onOpenChange={onOpenChange}
+          placement="top-center"
+        >
+          <ModalContent>
+            {(onClose) => (
+              <>
+                <ModalHeader className="text-xl font-semibold">
+                  Edit Profile
+                </ModalHeader>
+                <ModalBody>
+                  <Input
+                    autoFocus
+                    label="Name"
+                    name="name"
+                    type="text"
+                    variant="bordered"
+                    value={selectedProfile.name}
+                    onChange={handleInputChange}
+                  />
+                  <Textarea
+                    label="Description"
+                    name="description"
+                    type="text"
+                    variant="bordered"
+                    value={selectedProfile.description}
+                    onChange={handleInputChange}
+                  />
+                  <Image
+                    alt={selectedProfile.name}
+                    className="object-cover rounded-xl"
+                    src={selectedProfile.avatar}
+                    width={270}
+                  />
+                  <input
+                    id="file-input"
+                    type="file"
+                    name="avatar"
+                    onChange={handleInputChange}
+                  />
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="error" variant="flat" onPress={onClose}>
+                    Close
+                  </Button>
+                  <Button
+                    color="gradient"
+                    onPress={onClose}
+                    onClick={() => {
+                      onUpdate(selectedProfile._id);
+                    }}
+                  >
+                    Save Changes
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }
 
 export default Home;
-
-// ------------------------------------------------------------------------------------------------------------
-
-// import React, { useEffect, useState } from "react";
-// import {
-//     Modal,
-//     ModalContent,
-//     ModalHeader,
-//     ModalBody,
-//     ModalFooter,
-//     Button,
-//     useDisclosure,
-//     Input,
-//     Card,
-//     CardHeader,
-//     CardBody,
-//     Image,
-//     Textarea,
-//     CardFooter
-//   } from "@nextui-org/react";
-
-// function Home() {
-//   const [profile, setProfile] = useState({});
-//   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
-//   useEffect(() => {
-//     const fetchProfile = async () => {
-//       try {
-//         // Fetch profile data from API
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     };
-//     fetchProfile();
-//   }, []);
-
-//   return (
-//     <div className="bg-white p-6 rounded-lg shadow-lg max-w-3xl mx-auto">
-//       <div className="text-center">
-//         <img
-//           src={profile.avatar || "https://via.placeholder.com/150"}
-//           alt="Profile"
-//           className="rounded-full w-32 h-32 mx-auto mb-4 border-4 border-blue-500"
-//         />
-//         <h2 className="text-3xl font-bold mb-2">{profile.name || "Your Name"}</h2>
-//         <p className="text-lg mb-4 text-gray-700">{profile.description || "Profile description goes here."}</p>
-//         <Button onClick={onOpen} color="gradient" className="text-white">
-//           Edit Profile
-//         </Button>
-//       </div>
-
-//       {/* Modal */}
-//       <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
-//         <Modal.Content>
-//           <Modal.Header className="text-xl font-semibold">Edit Profile</Modal.Header>
-//           <Modal.Body>
-//             <Input
-//               autoFocus
-//               label="Email"
-//               placeholder="Enter your email"
-//               variant="bordered"
-//               className="mb-4"
-//             />
-//             <Input
-//               label="Password"
-//               placeholder="Enter your password"
-//               type="password"
-//               variant="bordered"
-//             />
-//           </Modal.Body>
-//           <Modal.Footer>
-//             <Button color="error" variant="flat" onPress={onOpenChange}>
-//               Close
-//             </Button>
-//             <Button color="gradient" onPress={onOpenChange}>
-//               Save Changes
-//             </Button>
-//           </Modal.Footer>
-//         </Modal.Content>
-//       </Modal>
-//     </div>
-//   );
-// }
-
-// export default Home;

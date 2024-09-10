@@ -3,12 +3,12 @@ const Profile = require("../models/profile.model");
 //Create
 const postProfile = async (req, res) => {
   try {
-    const { user } = req.body;
+    const { name, description } = req.body;
     const avatar = {
       data: req.file.buffer,
       contentType: req.file.mimetype,
     };
-    const profile = await Profile.create({ user, avatar });
+    const profile = await Profile.create({ name, description, avatar });
     res.status(200).json({
       message: "Profile created Successfully",
       data: profile,
@@ -50,8 +50,8 @@ const getProfile = async (req, res) => {
 const putProfile = async (req, res) => {
   try {
     const { id } = req.params;
-    const { user } = req.body;
-    const updatedData = { user };
+    const { name, description } = req.body;
+    const updatedData = { name, description };
     if (req.file) {
       updatedData.avatar = {
         data: req.file.buffer,
@@ -95,7 +95,13 @@ const deleteProfile = async (req, res) => {
       message: "Profile deleted Successfully",
       data: updatedProfileList,
     });
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).json({
+      message: "Error in deletion of profile",
+      error: error.message,
+      data: [],
+    });
+  }
 };
 
 module.exports = { postProfile, getProfile, putProfile, deleteProfile };

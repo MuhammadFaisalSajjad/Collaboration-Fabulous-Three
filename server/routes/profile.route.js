@@ -8,9 +8,9 @@ const {
 } = require("../controllers/profile.controller");
 const router = express.Router();
 
-router.get("/", upload.single("image"), getProfile);
-router.post("/", postProfile);
-router.put("/:id", upload.single("image"), putProfile);
+router.post("/", upload.single("avatar"), postProfile);
+router.get("/",  getProfile);
+router.put("/:id", upload.single("avatar"), putProfile);
 router.delete("/:id", deleteProfile);
 
 module.exports = router;
