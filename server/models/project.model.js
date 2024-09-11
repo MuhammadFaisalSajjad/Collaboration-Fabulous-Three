@@ -13,6 +13,9 @@ const projectSchema = mongoose.Schema({
     data: Buffer,
     contentType: String,
   },
+  url: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
