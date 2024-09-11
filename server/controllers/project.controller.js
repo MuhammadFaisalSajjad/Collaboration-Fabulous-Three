@@ -5,7 +5,7 @@ var path = require("path");
 //Create
 const postProject = async (req, res) => {
   try {
-    const { title, description } = req.body;
+    const { title, description, url } = req.body;
     const image = {
       data: req.file.buffer,
       contentType: req.file.mimetype,
@@ -15,6 +15,7 @@ const postProject = async (req, res) => {
       title,
       description,
       image,
+      url,
     });
 
     res
@@ -60,8 +61,8 @@ const getProjects = async (req, res) => {
 const putProject = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description } = req.body;
-    const updatedData = { title, description };
+    const { title, description, url } = req.body;
+    const updatedData = { title, description, url };
     if (req.file) {
       updatedData.image = {
         data: req.file.buffer,

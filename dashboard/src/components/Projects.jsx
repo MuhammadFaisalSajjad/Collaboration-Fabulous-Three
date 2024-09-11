@@ -25,6 +25,7 @@ function Projects() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
+  const [url, setUrl] = useState("");
   // For Modal
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -54,6 +55,7 @@ function Projects() {
     setTitle("");
     setDescription("");
     setImage(null);
+    setUrl(null);
     onOpen();
   };
 
@@ -63,6 +65,7 @@ function Projects() {
       formData.append("title", title);
       formData.append("description", description);
       formData.append("image", image);
+      formData.append("url", url);
 
       const newProject = await axios.post(
         "http://localhost:8080/api/projects",
@@ -78,6 +81,7 @@ function Projects() {
       setTitle(null);
       setDescription(null);
       setImage(null);
+      setUrl(null);
     } catch (error) {
       console.log(error);
       alert("Someting went wrong. Cannot add project");
@@ -145,7 +149,7 @@ function Projects() {
           Projects
         </h2>
         <Button color="primary" className="mb-3" onClick={openAddModal}>
-          <VscAdd/>  Add Project
+          <VscAdd /> Add Project
         </Button>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.length > 0 ? (
@@ -168,6 +172,7 @@ function Projects() {
                     height={200}
                   />
                   <p className="text-gray-300 mt-2">{project.description}</p>
+                  <p className="text-blue-300 mt-2">{project.url}</p>
                 </CardBody>
                 <CardFooter className="flex gap-2">
                   <Button
@@ -223,6 +228,14 @@ function Projects() {
                       value={selectedProject.description}
                       onChange={handleInputChange}
                     />
+                    <Input
+                      label="Url"
+                      type="text"
+                      name="url"
+                      variant="bordered"
+                      value={selectedProject.url}
+                      onChange={handleInputChange}
+                    />
                     <Image
                       alt={selectedProject.title}
                       className="object-cover rounded-xl"
@@ -276,6 +289,17 @@ function Projects() {
                       value={title}
                       onChange={(e) => {
                         setTitle(e.target.value);
+                      }}
+                      variant="bordered"
+                    />
+                    <Input
+                      label="url"
+                      placeholder="Enter url for project"
+                      type="text"
+                      name="url"
+                      value={url}
+                      onChange={(e) => {
+                        setUrl(e.target.value);
                       }}
                       variant="bordered"
                     />
