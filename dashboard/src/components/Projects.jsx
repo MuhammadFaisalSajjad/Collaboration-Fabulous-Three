@@ -172,7 +172,7 @@ function Projects() {
                     height={200}
                   />
                   <p className="text-gray-300 mt-2">{project.description}</p>
-                  <p className="text-blue-300 mt-2">{project.url}</p>
+                  <a href={project.url} className="text-blue-300 mt-2" target="_blank" rel="noopener noreferrer">Live Preview</a>
                 </CardBody>
                 <CardFooter className="flex gap-2">
                   <Button
