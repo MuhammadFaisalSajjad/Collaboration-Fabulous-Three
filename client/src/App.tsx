@@ -1,11 +1,14 @@
 import React from "react";
-import "@mantine/core/styles.css";
 import { MantineProvider } from "@mantine/core";
+import Layout from "./layout/Layout";
+import "@mantine/core/styles.css";
 
 function App() {
   return (
     <React.Fragment>
-      <MantineProvider>{/* Your app here */}</MantineProvider>
+      <MantineProvider>
+        <Layout />
+      </MantineProvider>
     </React.Fragment>
   );
 }
