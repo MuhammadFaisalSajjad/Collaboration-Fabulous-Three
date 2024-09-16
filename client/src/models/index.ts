@@ -4,4 +4,4 @@ import Profile from "./Profile.model";
 import Project from "./Project.model";
 import Skill from "./Skill.model";
 
-exports = { About, Experience, Profile, Project, Skill };
+export type { About, Experience, Profile, Project, Skill };
