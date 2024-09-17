@@ -1,5 +1,5 @@
 import Navbar from "./navbar/Navbar";
 import ProfileCard from "./card/ProfileCard";
-import ContactPage from "./contact/ContactPage";
+import ContactForm from "./contact/ContactForm";
 
-export { Navbar, ProfileCard, ContactPage };
+export { Navbar, ProfileCard, ContactForm };
