@@ -1,11 +1,12 @@
 import React from "react";
 import Layout from "../layout/Layout";
+import { ContactPage } from "../components";
 
 const Contact = (): React.JSX.Element => {
   return (
     <React.Fragment>
       <Layout>
-        <div>Contact Page</div>
+        <ContactPage/>
       </Layout>
     </React.Fragment>
   );
