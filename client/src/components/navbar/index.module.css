@@ -23,7 +23,19 @@
 
   &:hover {
     background-color: var(--mantine-color-gray-0);
+    border-radius: 1vw;
   }
+}
+
+.active {
+  color: var(
+    --mantine-color-blue-6
+  ); /* Change the color to indicate it's active */
+  font-weight: bold; /* Optional: Make it bold to highlight */
+  background-color: var(
+    --mantine-color-gray-1
+  ); /* Optional: background change */
+  border-radius: 1vw;
 }
 
 .subLink {
@@ -43,4 +55,8 @@
   padding: var(--mantine-spacing-md) calc(var(--mantine-spacing-md) * 2);
   padding-bottom: var(--mantine-spacing-xl);
   border-top: 1px solid var(--mantine-color-gray-1);
+}
+
+.pb-0 {
+  padding-bottom: 0 !important;
 }

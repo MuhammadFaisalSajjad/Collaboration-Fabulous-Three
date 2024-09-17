@@ -1,15 +1,16 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import {
-  HoverCard,
+  // HoverCard,
   Group,
   Button,
   UnstyledButton,
   Text,
-  SimpleGrid,
+  // SimpleGrid,
   ThemeIcon,
-  Anchor,
+  // Anchor,
   Divider,
-  Center,
+  // Center,
   Box,
   Burger,
   Drawer,
@@ -27,45 +28,46 @@ import {
   IconChartPie3,
   IconFingerprint,
   IconCoin,
-  IconChevronDown,
-} from '@tabler/icons-react';
-import classes from "./index.module.css"; 
+  // IconChevronDown,
+} from "@tabler/icons-react";
+import classes from "./index.module.css";
 
 const mockdata = [
   {
     icon: IconCode,
-    title: 'Open source',
-    description: 'This Pokémon’s cry is very loud and distracting',
+    title: "Open source",
+    description: "This Pokémon’s cry is very loud and distracting",
   },
   {
     icon: IconCoin,
-    title: 'Free for everyone',
-    description: 'The fluid of Smeargle’s tail secretions changes',
+    title: "Free for everyone",
+    description: "The fluid of Smeargle’s tail secretions changes",
   },
   {
     icon: IconBook,
-    title: 'Documentation',
-    description: 'Yanma is capable of seeing 360 degrees without',
+    title: "Documentation",
+    description: "Yanma is capable of seeing 360 degrees without",
   },
   {
     icon: IconFingerprint,
-    title: 'Security',
-    description: 'The shell’s rounded shape and the grooves on its.',
+    title: "Security",
+    description: "The shell’s rounded shape and the grooves on its.",
   },
   {
     icon: IconChartPie3,
-    title: 'Analytics',
-    description: 'This Pokémon uses its flying ability to quickly chase',
+    title: "Analytics",
+    description: "This Pokémon uses its flying ability to quickly chase",
   },
   {
     icon: IconNotification,
-    title: 'Notifications',
-    description: 'Combusken battles with the intensely hot flames it spews',
+    title: "Notifications",
+    description: "Combusken battles with the intensely hot flames it spews",
   },
 ];
 
 const Navbar = (): React.JSX.Element => {
-  const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
+  const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
+    useDisclosure(false);
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
   const theme = useMantineTheme();
 
@@ -73,7 +75,10 @@ const Navbar = (): React.JSX.Element => {
     <UnstyledButton className={classes.subLink} key={item.title}>
       <Group wrap="nowrap" align="flex-start">
         <ThemeIcon size={34} variant="default" radius="md">
-          <item.icon style={{ width: rem(22), height: rem(22) }} color={theme.colors.blue[6]} />
+          <item.icon
+            style={{ width: rem(22), height: rem(22) }}
+            color={theme.colors.blue[6]}
+          />
         </ThemeIcon>
         <div>
           <Text size="sm" fw={500}>
@@ -89,70 +94,74 @@ const Navbar = (): React.JSX.Element => {
 
   return (
     <React.Fragment>
-      <Box pb={120}>
-        <header className={classes.header}>
+      <Box
+        style={{
+          border: "2px solid lightgrey",
+          borderRadius: "1vw",
+          padding: "1vw",
+        }}
+      >
+        <header
+          className={classes.header}
+          style={{
+            borderBottom: "none",
+          }}
+        >
           <Group justify="space-between" h="100%">
             <MantineLogo size={30} />
 
             <Group h="100%" gap={0} visibleFrom="sm">
-              <a href="#" className={classes.link}>
-                Home
-              </a>
-              <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
-                <HoverCard.Target>
-                  <a href="#" className={classes.link}>
-                    <Center inline>
-                      <Box component="span" mr={5}>
-                        Features
-                      </Box>
-                      <IconChevronDown style={{ width: rem(16), height: rem(16) }} color={theme.colors.blue[6]} />
-                    </Center>
-                  </a>
-                </HoverCard.Target>
-
-                <HoverCard.Dropdown style={{ overflow: "hidden" }}>
-                  <Group justify="space-between" px="md">
-                    <Text fw={500}>Features</Text>
-                    <Anchor href="#" fz="xs">
-                      View all
-                    </Anchor>
-                  </Group>
-
-                  <Divider my="sm" />
-
-                  <SimpleGrid cols={2} spacing={0}>
-                    {links}
-                  </SimpleGrid>
-
-                  <div className={classes.dropdownFooter}>
-                    <Group justify="space-between">
-                      <div>
-                        <Text fw={500} fz="sm">
-                          Get started
-                        </Text>
-                        <Text size="xs" c="dimmed">
-                          Their food sources have decreased, and their numbers
-                        </Text>
-                      </div>
-                      <Button variant="default">Get started</Button>
-                    </Group>
-                  </div>
-                </HoverCard.Dropdown>
-              </HoverCard>
-              <a href="#" className={classes.link}>
-                Learn
-              </a>
-              <a href="#" className={classes.link}>
-                Academy
-              </a>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? `${classes.link} ${classes.active}` : classes.link
+                }
+              >
+                About
+              </NavLink>
+              <NavLink
+                to="/services"
+                className={({ isActive }) =>
+                  isActive ? `${classes.link} ${classes.active}` : classes.link
+                }
+              >
+                Services
+              </NavLink>
+              <NavLink
+                to="/resume"
+                className={({ isActive }) =>
+                  isActive ? `${classes.link} ${classes.active}` : classes.link
+                }
+              >
+                Resume
+              </NavLink>
+              <NavLink
+                to="/work"
+                className={({ isActive }) =>
+                  isActive ? `${classes.link} ${classes.active}` : classes.link
+                }
+              >
+                Work
+              </NavLink>
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                  isActive ? `${classes.link} ${classes.active}` : classes.link
+                }
+              >
+                Contact
+              </NavLink>
             </Group>
 
             <Group visibleFrom="sm">
               <Button variant="default">Log in</Button>
-              <Button>Sign up</Button>
             </Group>
 
-            <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />
+            <Burger
+              opened={drawerOpened}
+              onClick={toggleDrawer}
+              hiddenFrom="sm"
+            />
           </Group>
         </header>
 
@@ -168,30 +177,52 @@ const Navbar = (): React.JSX.Element => {
           <ScrollArea h={`calc(100vh - ${rem(80)})`} mx="-md">
             <Divider my="sm" />
 
-            <a href="#" className={classes.link}>
-              Home
-            </a>
-            <UnstyledButton className={classes.link} onClick={toggleLinks}>
-              <Center inline>
-                <Box component="span" mr={5}>
-                  Features
-                </Box>
-                <IconChevronDown style={{ width: rem(16), height: rem(16) }} color={theme.colors.blue[6]} />
-              </Center>
-            </UnstyledButton>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive ? `${classes.link} ${classes.active}` : classes.link
+              }
+            >
+              About
+            </NavLink>
             <Collapse in={linksOpened}>{links}</Collapse>
-            <a href="#" className={classes.link}>
-              Learn
-            </a>
-            <a href="#" className={classes.link}>
-              Academy
-            </a>
+            <NavLink
+              to="/services"
+              className={({ isActive }) =>
+                isActive ? `${classes.link} ${classes.active}` : classes.link
+              }
+            >
+              Services
+            </NavLink>
+            <NavLink
+              to="/resume"
+              className={({ isActive }) =>
+                isActive ? `${classes.link} ${classes.active}` : classes.link
+              }
+            >
+              Resume
+            </NavLink>
+            <NavLink
+              to="/work"
+              className={({ isActive }) =>
+                isActive ? `${classes.link} ${classes.active}` : classes.link
+              }
+            >
+              Work
+            </NavLink>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                isActive ? `${classes.link} ${classes.active}` : classes.link
+              }
+            >
+              Contact
+            </NavLink>
 
             <Divider my="sm" />
 
             <Group justify="center" grow pb="xl" px="md">
               <Button variant="default">Log in</Button>
-              <Button>Sign up</Button>
             </Group>
           </ScrollArea>
         </Drawer>
