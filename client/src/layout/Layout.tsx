@@ -1,7 +1,8 @@
 import React from "react";
 import { Grid, Container } from "@mantine/core";
-import { Navbar, ProfileCard } from "../components";
+import { Navbar, ProfileCard, Contact } from "../components";
 import { LayoutProp } from "../types";
+
 
 const Layout = ({ children }: LayoutProp): React.JSX.Element => {
   return (
@@ -24,6 +25,8 @@ const Layout = ({ children }: LayoutProp): React.JSX.Element => {
             <ProfileCard />
           </Grid.Col>
           <Grid.Col span={{ base: 12, xs: 8 }}>{children}</Grid.Col>
+          {/* Start from here :3 */}
+          <Contact />
         </Grid>
       </Container>
     </React.Fragment>
