@@ -8,12 +8,20 @@ const Layout = ({ children }: LayoutProp): React.JSX.Element => {
     <React.Fragment>
       <Container my="md">
         <Grid>
-          <Grid.Col span={{ base: 12, xs: 12 }}>
+          <Grid.Col
+            span={{ base: 12, xs: 12 }}
+            style={{
+              position: "sticky",
+              top: "0",
+              zIndex: "10",
+              backdropFilter: "blur(16px) saturate(180%)",
+            }}
+          >
             <Navbar />
           </Grid.Col>
           <Grid.Col span={{ base: 12, xs: 4 }}>
             {/* <Skeleton height={140} radius="md" animate={false} /> */}
-            <ProfileCard/>
+            <ProfileCard />
           </Grid.Col>
           <Grid.Col span={{ base: 12, xs: 8 }}>{children}</Grid.Col>
         </Grid>
