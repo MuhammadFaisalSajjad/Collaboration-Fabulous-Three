@@ -1,6 +1,6 @@
 import React from "react";
 
-const ContactPage = (): React.JSX.Element => {
+const ContactForm = (): React.JSX.Element => {
   return (
     <React.Fragment>
       <div>Contact From</div>
@@ -8,4 +8,4 @@ const ContactPage = (): React.JSX.Element => {
   );
 };
 
-export default ContactPage;
+export default ContactForm;

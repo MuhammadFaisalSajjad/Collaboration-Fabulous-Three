@@ -1,12 +1,12 @@
 import React from "react";
 import Layout from "../layout/Layout";
-import { ContactPage } from "../components";
+import { ContactForm } from "../components";
 
 const Contact = (): React.JSX.Element => {
   return (
     <React.Fragment>
       <Layout>
-        <ContactPage/>
+        <ContactForm/>
       </Layout>
     </React.Fragment>
   );
