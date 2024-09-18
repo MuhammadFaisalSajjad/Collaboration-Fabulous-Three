@@ -163,7 +163,6 @@ const Navbar = (): React.JSX.Element => {
             </Group>
 
             <Group visibleFrom="sm">
-              {/* <Button variant="default">Log in</Button> */}
               <ActionIcon
                 onClick={() =>
                   setColorScheme(
@@ -249,28 +248,27 @@ const Navbar = (): React.JSX.Element => {
 
             <Divider my="sm" />
 
-            {/* <Group justify="center" grow pb="xl" px="md">
-              <Button variant="default">Log in</Button>
-            </Group> */}
-            <ActionIcon
-              onClick={() =>
-                setColorScheme(
-                  computedColorScheme === "light" ? "dark" : "light"
-                )
-              }
-              variant="default"
-              size="xl"
-              aria-label="Toggle color scheme"
-            >
-              <IconSun
-                className={cx(classes.icon, classes.light)}
-                stroke={1.5}
-              />
-              <IconMoon
-                className={cx(classes.icon, classes.dark)}
-                stroke={1.5}
-              />
-            </ActionIcon>
+            <Group justify="start" pb="xl" px="md">
+              <ActionIcon
+                onClick={() =>
+                  setColorScheme(
+                    computedColorScheme === "light" ? "dark" : "light"
+                  )
+                }
+                variant="default"
+                size="xl"
+                aria-label="Toggle color scheme"
+              >
+                <IconSun
+                  className={cx(classes.icon, classes.light)}
+                  stroke={1.5}
+                />
+                <IconMoon
+                  className={cx(classes.icon, classes.dark)}
+                  stroke={1.5}
+                />
+              </ActionIcon>
+            </Group>
           </ScrollArea>
         </Drawer>
       </Box>
