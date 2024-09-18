@@ -1,3 +1,4 @@
 import LayoutProp from "./LayoutProp.type";
+import FetchProp from "./FetchProp.type";
 
-export type { LayoutProp };
+export type { LayoutProp, FetchProp };
