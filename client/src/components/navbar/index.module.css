@@ -5,7 +5,7 @@
   border-bottom: 1px solid var(--mantine-color-gray-3);
 }
 
-.link {
+/* .link {
   display: flex;
   align-items: center;
   height: 100%;
@@ -25,16 +25,36 @@
     background-color: var(--mantine-color-gray-0);
     border-radius: 1vw;
   }
+} */
+
+.link {
+  display: block;
+  line-height: 1;
+  padding: rem(8px) rem(12px);
+  border-radius: var(--mantine-radius-sm);
+  text-decoration: none;
+  color: light-dark(var(--mantine-color-gray-7), var(--mantine-color-dark-0));
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 500;
+
+  @mixin hover {
+    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+  }
+
+  [data-mantine-color-scheme] &[data-active] {
+    background-color: var(--mantine-color-blue-filled);
+    color: var(--mantine-color-white);
+  }
 }
 
 .active {
   color: var(
     --mantine-color-blue-6
-  ); /* Change the color to indicate it's active */
-  font-weight: bold; /* Optional: Make it bold to highlight */
+  ); 
+  font-weight: bold; 
   background-color: var(
     --mantine-color-gray-1
-  ); /* Optional: background change */
+  ); 
   border-radius: 1vw;
 }
 
@@ -59,4 +79,31 @@
 
 .pb-0 {
   padding-bottom: 0 !important;
+}
+
+/* Dark Mode Ligth Mode CSS */
+
+.icon {
+  width: 22px;
+  height: 22px;
+}
+
+.dark {
+  @mixin dark {
+    display: none;
+  }
+
+  @mixin light {
+    display: block;
+  }
+}
+
+.light {
+  @mixin light {
+    display: none;
+  }
+
+  @mixin dark {
+    display: block;
+  }
 }

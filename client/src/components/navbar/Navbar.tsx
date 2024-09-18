@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import {
   // HoverCard,
   Group,
-  Button,
+  // Button,
   UnstyledButton,
   Text,
   // SimpleGrid,
@@ -18,6 +18,9 @@ import {
   ScrollArea,
   rem,
   useMantineTheme,
+  ActionIcon,
+  useMantineColorScheme,
+  useComputedColorScheme,
 } from "@mantine/core";
 import { MantineLogo } from "@mantinex/mantine-logo";
 import { useDisclosure } from "@mantine/hooks";
@@ -30,6 +33,8 @@ import {
   IconCoin,
   // IconChevronDown,
 } from "@tabler/icons-react";
+import { IconSun, IconMoon } from "@tabler/icons-react";
+import cx from "clsx";
 import classes from "./index.module.css";
 
 const mockdata = [
@@ -70,6 +75,10 @@ const Navbar = (): React.JSX.Element => {
     useDisclosure(false);
   const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
   const theme = useMantineTheme();
+  const { setColorScheme } = useMantineColorScheme();
+  const computedColorScheme = useComputedColorScheme("light", {
+    getInitialValueInEffect: true,
+  });
 
   const links = mockdata.map((item) => (
     <UnstyledButton className={classes.subLink} key={item.title}>
@@ -154,7 +163,26 @@ const Navbar = (): React.JSX.Element => {
             </Group>
 
             <Group visibleFrom="sm">
-              <Button variant="default">Log in</Button>
+              {/* <Button variant="default">Log in</Button> */}
+              <ActionIcon
+                onClick={() =>
+                  setColorScheme(
+                    computedColorScheme === "light" ? "dark" : "light"
+                  )
+                }
+                variant="default"
+                size="xl"
+                aria-label="Toggle color scheme"
+              >
+                <IconSun
+                  className={cx(classes.icon, classes.light)}
+                  stroke={1.5}
+                />
+                <IconMoon
+                  className={cx(classes.icon, classes.dark)}
+                  stroke={1.5}
+                />
+              </ActionIcon>
             </Group>
 
             <Burger
@@ -221,9 +249,28 @@ const Navbar = (): React.JSX.Element => {
 
             <Divider my="sm" />
 
-            <Group justify="center" grow pb="xl" px="md">
+            {/* <Group justify="center" grow pb="xl" px="md">
               <Button variant="default">Log in</Button>
-            </Group>
+            </Group> */}
+            <ActionIcon
+              onClick={() =>
+                setColorScheme(
+                  computedColorScheme === "light" ? "dark" : "light"
+                )
+              }
+              variant="default"
+              size="xl"
+              aria-label="Toggle color scheme"
+            >
+              <IconSun
+                className={cx(classes.icon, classes.light)}
+                stroke={1.5}
+              />
+              <IconMoon
+                className={cx(classes.icon, classes.dark)}
+                stroke={1.5}
+              />
+            </ActionIcon>
           </ScrollArea>
         </Drawer>
       </Box>
