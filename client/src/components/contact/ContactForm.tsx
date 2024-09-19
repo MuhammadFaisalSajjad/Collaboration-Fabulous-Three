@@ -3,13 +3,9 @@ import { TextInput, Textarea, SimpleGrid, Group, Title, Button, Box } from '@man
 import { useForm } from '@mantine/form';
 import emailjs from "@emailjs/browser";
 
-const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID!;
-const TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID!;
-const PUBLIC_KEY = process.env.NEXT_PUBLIC_PUBLIC_KEY!;
-
-
-
-
+const SERVICE_ID = import.meta.env.VITE_SERVICE_ID!;
+const TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID!;
+const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY!;
 
 const ContactForm = (): React.JSX.Element => {
   
