@@ -1,28 +1,34 @@
-"use client";
-import React, { useState } from "react";
+import React, {useState} from "react";
+import { TextInput, Textarea, SimpleGrid, Group, Title, Button, Box } from '@mantine/core';
+// import { useForm } from '@mantine/form';
 import emailjs from "@emailjs/browser";
 
-// Load environment variables (works in React when starting with REACT_APP_)
-const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID!;
-const TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID!;
-const PUBLIC_KEY = process.env.NEXT_PUBLIC_PUBLIC_KEY!;
+const SERVICE_ID = import.meta.env.VITE_SERVICE_ID!;
+const TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID!;
+const PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY!;
 
-const defaultFormState = {
-  name: {
-    value: "",
-    error: "",
-  },
-  email: {
-    value: "",
-    error: "",
-  },
-  message: {
-    value: "",
-    error: "",
-  },
-};
+const ContactForm = (): React.JSX.Element => {
+  
+  const defaultFormState = {
+    name: {
+      value: "",
+      error: "",
+    },
+    email: {
+      value: "",
+      error: "",
+    },
+    subject:{
+      value:"",
+      error:"",
+    },
+    message: {
+      value: "",
+      error: "",
+    },
+  };
 
-export const Contact = () => {
+
   const [formData, setFormData] = useState(defaultFormState);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
@@ -36,8 +42,9 @@ export const Contact = () => {
     const templateParams = {
       from_name: formData.name.value,
       from_email: formData.email.value,
+      from_subject:formData.subject.value,
       message: formData.message.value,
-      to_name: "Haider Jamal", 
+      to_name: "Faisal Sajjad",
     };
 
     // Initialize EmailJS with public key
@@ -53,19 +60,36 @@ export const Contact = () => {
       },
       (err) => {
         console.error("FAILED...", err);
-        setStatusMessage("Failed to send message. Please try again.");
+        setStatusMessage("Error Sending Message");
         setIsSubmitting(false);
       }
     );
   };
 
+
+  
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      <div className="flex flex-col md:flex-row justify-between gap-5">
-        <input
-          type="text"
-          placeholder="Your Name"
-          className="bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-neutral-200 px-2 py-2 rounded-md text-sm text-neutral-700 w-full"
+    <React.Fragment>
+      <Box mt="lg" >
+
+      <form onSubmit={handleSubmit}>
+      <Title
+        mt='lg'
+        order={2}
+        size="h3"
+        style={{ fontFamily: 'Greycliff CF, var(--mantine-font-family)' }}
+        fw={650}
+        ta="left"
+      >
+        Let's get in touch
+      </Title>
+
+      <SimpleGrid cols={{ base: 1, sm: 2 }} mt="xl">
+        <TextInput
+          size="lg"
+          placeholder="Name*"
+          name="name"
+          variant="filled"
           value={formData.name.value}
           onChange={(e) => {
             setFormData({
@@ -77,10 +101,11 @@ export const Contact = () => {
             });
           }}
         />
-        <input
-          type="email"
-          placeholder="Your email address"
-          className="bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-neutral-200 px-2 py-2 rounded-md text-sm text-neutral-700 w-full"
+        <TextInput
+          size="lg"
+          placeholder="Email*"
+          name="email"
+          variant="filled"
           value={formData.email.value}
           onChange={(e) => {
             setFormData({
@@ -92,14 +117,36 @@ export const Contact = () => {
             });
           }}
         />
-      </div>
-      <div>
-        <textarea
-          placeholder="Your Message"
-          rows={10}
-          className="bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-neutral-200 px-2 mt-4 py-2 rounded-md text-sm text-neutral-700 w-full"
-          value={formData.message.value}
+      </SimpleGrid>
+
+      <TextInput
+        size="lg"
+        placeholder="Subject*"
+        mt="md"
+        name="subject"
+        variant="filled"
+        value={formData.subject.value}
           onChange={(e) => {
+            setFormData({
+              ...formData,
+              subject: {
+                value: e.target.value,
+                error: "",
+              },
+            });
+          }}
+      />
+      <Textarea
+        size="lg"
+        mt="md"
+        placeholder="Tell me more about your needs .........."
+        maxRows={10}
+        minRows={5}
+        autosize
+        name="message"
+        variant="filled"
+        value={formData.message.value}
+                  onChange={(e) => {
             setFormData({
               ...formData,
               message: {
@@ -108,18 +155,21 @@ export const Contact = () => {
               },
             });
           }}
-        />
-      </div>
-      <button
-        className="w-full px-2 py-2 mt-4 bg-neutral-100 rounded-md font-bold text-neutral-500"
-        type="submit"
-        disabled={isSubmitting}
-      >
-        {isSubmitting ? "Sending..." : "Submit"}
-      </button>
-      {statusMessage && (
+      />
+
+      <Group justify="center" mt="xl">
+        <Button disabled={isSubmitting} type="submit" size="md" color="green">
+        {isSubmitting ? "Sending..." : "Send message"}
+        </Button>
+        {statusMessage && (
         <p className="mt-4 text-sm text-neutral-600">{statusMessage}</p>
       )}
+      </Group>
     </form>
+        
+      </Box>
+    </React.Fragment>
   );
 };
+
+export default ContactForm;
