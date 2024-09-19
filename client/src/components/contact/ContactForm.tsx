@@ -1,7 +1,11 @@
 import React from "react";
 import { TextInput, Textarea, SimpleGrid, Group, Title, Button, Box } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import emailjs from "@emailjs/browser";
 
+const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID!;
+const TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID!;
+const PUBLIC_KEY = process.env.NEXT_PUBLIC_PUBLIC_KEY!;
 
 
 
