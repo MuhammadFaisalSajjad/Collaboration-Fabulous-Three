@@ -46,6 +46,13 @@ function Home() {
     const { name, value, files } = e.target;
     if (name === "avatar" && files && files.length > 0) {
       setAvatar(files[0]);
+    } else if (name === "description") {
+      // Trim each entry to remove extra spaces
+      const descriptionArray = value.split(",").map((item) => item.trim());
+      setSelectedProfile((current) => ({
+        ...current,
+        description: descriptionArray,
+      }));
     } else {
       setSelectedProfile((current) => ({
         ...current,
@@ -75,11 +82,11 @@ function Home() {
           },
         }
       );
-      
-      if(Array.isArray(updatedProfile.data)) {
+
+      if (Array.isArray(updatedProfile.data)) {
         setProfile(updatedProfile.data);
       }
-      
+
       alert("Profile Updated Successfully");
     } catch (error) {
       alert("Something went wrong. Couldn't update profile");
@@ -100,7 +107,11 @@ function Home() {
             <h2 className="text-4xl font-extrabold mb-2 text-white">
               {data.name}
             </h2>
-            <p className="text-lg mb-4 text-white">{data.description}</p>
+            <p className="text-lg mb-4 text-white">
+              {Array.isArray(data.description)
+                ? data.description.join(", ")
+                : data.description.split(",").map((item) => item.trim().join(", "))}
+            </p>
             <Button
               onClick={() => openModal(data)}
               color="gradient"
@@ -140,7 +151,11 @@ function Home() {
                     name="description"
                     type="text"
                     variant="bordered"
-                    value={selectedProfile.description}
+                    value={
+                      selectedProfile.description
+                        ? selectedProfile.description.join(", ")
+                        : ""
+                    }
                     onChange={handleInputChange}
                   />
                   <Image

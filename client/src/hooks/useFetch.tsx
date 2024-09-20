@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { FetchProp } from "../types";
 
 const useFetch = ({ url }: FetchProp) => {
-  const [data, setData] = useState<FetchProp[]>([]);
+  const [data, setData] = useState([]);
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 

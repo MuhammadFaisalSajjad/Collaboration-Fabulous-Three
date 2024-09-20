@@ -24,3 +24,8 @@
   font-size: var(--mantine-font-size-xs);
   font-weight: 700;
 }
+
+.imgBorder {
+  border: rem(0.5vw) solid
+    light-dark(var(--mantine-color-gray-4), var(--mantine-color-dark-3));
+}

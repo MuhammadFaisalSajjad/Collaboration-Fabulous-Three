@@ -4,11 +4,20 @@ const Profile = require("../models/profile.model");
 const postProfile = async (req, res) => {
   try {
     const { name, description } = req.body;
+
+    const descriptionArray = Array.isArray(description)
+      ? description
+      : description.split(",").map((item) => item.trim());
+
     const avatar = {
       data: req.file.buffer,
       contentType: req.file.mimetype,
     };
-    const profile = await Profile.create({ name, description, avatar });
+    const profile = await Profile.create({
+      name,
+      description: descriptionArray,
+      avatar,
+    });
     res.status(200).json({
       message: "Profile created Successfully",
       data: profile,
@@ -51,7 +60,12 @@ const putProfile = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, description } = req.body;
-    const updatedData = { name, description };
+
+    const descriptionArray = Array.isArray(description)
+      ? description
+      : description.split(",").map((item) => item.trim());
+
+    const updatedData = { name, description: descriptionArray };
     if (req.file) {
       updatedData.avatar = {
         data: req.file.buffer,

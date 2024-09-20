@@ -104,8 +104,8 @@ const Navbar = (): React.JSX.Element => {
   return (
     <React.Fragment>
       <Box
+      className={classes.border}
         style={{
-          border: "2px solid lightgrey",
           borderRadius: "1vw",
           padding: "1vw",
         }}
