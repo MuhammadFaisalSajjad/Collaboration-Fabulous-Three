@@ -8,7 +8,6 @@ import {
   Button,
   Box,
 } from "@mantine/core";
-// import { useForm } from '@mantine/form';
 import emailjs from "@emailjs/browser";
 
 const SERVICE_ID = import.meta.env.VITE_SERVICE_ID!;
