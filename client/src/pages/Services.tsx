@@ -9,12 +9,15 @@ const Services = (): React.JSX.Element => {
       <Layout>
         <div>
         <h1>Most Recent Work</h1>
-        <Grid justify="flex-start" align="stretch" >
+        <Grid align="stretch" >
           <GridCol span={{xs:12,sm:4,md:5,lg:5}}>
-        <ServiceBox name="TFK" description="BFK"/>
+        <ServiceBox name="Talha Farooq Khan" description="A quick brown fox jumps over the lazy dog"/>
         </GridCol>
         <GridCol span={{xs:12,sm:4,md:5,lg:5}}>
-        <ServiceBox name="BFT" description="NFT"/>
+        <ServiceBox name="Hassaan Bin Kaleem" description="A quick brown fox jumps over the lazy dog"/>
+        </GridCol>
+        <GridCol span={{xs:12,sm:4,md:5,lg:5}}>
+        <ServiceBox name="Muhammad Faisal Sajjad" description="A quick brown fox jumps over the lazy dog"/>
         </GridCol>
         </Grid>
         </div>

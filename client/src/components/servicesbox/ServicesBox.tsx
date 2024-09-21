@@ -10,14 +10,23 @@ type BoxDetails={
 const ServiceBox= ({ name,description }: BoxDetails): React.JSX.Element=>{
     return(
         <>
-        <Box mt="xl" bg="#672f7f">
-            <Box ml='lg'>
-        <IconBraces size={50} stroke={2} />
+        <Box mt="xl" bg="light-dark" style={{
+            border:'2px solid #424242',
+            borderRadius:'10px',
+        }}>
+            <Box pb="lg" mt='lg' ml='lg'>
+        <IconBraces size={60} stroke={2} />
         <h1 style={{
-            marginTop:'1vh',
+            marginTop:'2vh',
             marginBottom:'2vh',
+            fontSize:'1.4em',
+            color:'#FFFFFF',
+            fontWeight:'500'
         }}>{name}</h1>
-        <p>{description}</p>
+        <p style={{
+            fontSize:'1.2rem',
+            color:'#746F84'
+        }}>{description}</p>
         </Box>
         </Box>
         </>
