@@ -10,7 +10,7 @@ type BoxDetails={
 const ServiceBox= ({ name,description }: BoxDetails): React.JSX.Element=>{
     return(
         <>
-        <Box mt="xl" bg="light-dark" style={{
+        <Box mt="lg" bg="light-dark" style={{
             border:'2px solid #424242',
             borderRadius:'10px',
         }}>

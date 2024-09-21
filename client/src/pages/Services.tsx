@@ -8,7 +8,12 @@ const Services = (): React.JSX.Element => {
     <React.Fragment>
       <Layout>
         <div>
-        <h1>Most Recent Work</h1>
+        <h1 style={{
+            marginTop:'2vh',
+            fontSize:'1.4em',
+            color:'#FFFFFF',
+            fontWeight:'500'
+        }} >Most Recent Work</h1>
         <Grid align="stretch" >
           <GridCol span={{xs:12,sm:4,md:5,lg:5}}>
         <ServiceBox name="Talha Farooq Khan" description="A quick brown fox jumps over the lazy dog"/>
