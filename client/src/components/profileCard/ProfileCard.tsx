@@ -140,8 +140,15 @@ const ProfileCard = (): React.JSX.Element => {
                 padding="md"
               >
                 <Group className="my-3">
-                  <IconPhone size={20} />
-                  <Text>+92 304 5336488</Text>
+                  <div>
+                    <IconPhone size={20} />
+                  </div>
+                  <div className="flex flex-col ">
+                    <Text fz="md" fw={500}>
+                      Phone
+                    </Text>
+                    <Text>+92 304 5336488</Text>
+                  </div>
                 </Group>
               </Card>
 
@@ -152,8 +159,15 @@ const ProfileCard = (): React.JSX.Element => {
                 padding="md"
               >
                 <Group className="my-3">
-                  <IconMail size={20} />
-                  <Text>f.sajjad530@gmail.com</Text>
+                  <div>
+                    <IconMail size={20} />
+                  </div>
+                  <div className="flex flex-col ">
+                    <Text fz="md" fw={500}>
+                      Email
+                    </Text>
+                    <Text>f.sajjad530@gmail.com</Text>
+                  </div>
                 </Group>
               </Card>
 
@@ -164,8 +178,15 @@ const ProfileCard = (): React.JSX.Element => {
                 padding="md"
               >
                 <Group className="my-3">
-                  <IconMapPin size={20} />
-                  <Text>Multan, Punjab, Pakistan</Text>{" "}
+                  <div>
+                    <IconMapPin size={20} />
+                  </div>
+                  <div className="flex flex-col ">
+                    <Text fz="md" fw={500}>
+                      Location
+                    </Text>
+                    <Text>Multan, Punjab, Pakistan</Text>
+                  </div>
                 </Group>
               </Card>
             </div>
