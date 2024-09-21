@@ -141,7 +141,7 @@ const ProfileCard = (): React.JSX.Element => {
               >
                 <Group className="my-3">
                   <IconPhone size={20} />
-                  <Text>+123 456 7895</Text>
+                  <Text>+92 304 5336488</Text>
                 </Group>
               </Card>
 
@@ -153,7 +153,7 @@ const ProfileCard = (): React.JSX.Element => {
               >
                 <Group className="my-3">
                   <IconMail size={20} />
-                  <Text>info@domain.com</Text>
+                  <Text>f.sajjad530@gmail.com</Text>
                 </Group>
               </Card>
 
@@ -165,7 +165,7 @@ const ProfileCard = (): React.JSX.Element => {
               >
                 <Group className="my-3">
                   <IconMapPin size={20} />
-                  <Text>Los Angeles, California</Text>{" "}
+                  <Text>Multan, Punjab, Pakistan</Text>{" "}
                 </Group>
               </Card>
             </div>
