@@ -140,7 +140,7 @@ const ProfileCard = (): React.JSX.Element => {
                 padding="md"
               >
                 <Group className="my-3">
-                  <div>
+                  <div className={`${classes.pIcon} p-4 rounded-md`}>
                     <IconPhone size={20} />
                   </div>
                   <div className="flex flex-col ">
@@ -159,7 +159,7 @@ const ProfileCard = (): React.JSX.Element => {
                 padding="md"
               >
                 <Group className="my-3">
-                  <div>
+                  <div className={`${classes.pIcon} p-4 rounded-md`}>
                     <IconMail size={20} />
                   </div>
                   <div className="flex flex-col ">
@@ -178,7 +178,7 @@ const ProfileCard = (): React.JSX.Element => {
                 padding="md"
               >
                 <Group className="my-3">
-                  <div>
+                  <div className={`${classes.pIcon} p-4 rounded-md`}>
                     <IconMapPin size={20} />
                   </div>
                   <div className="flex flex-col ">
