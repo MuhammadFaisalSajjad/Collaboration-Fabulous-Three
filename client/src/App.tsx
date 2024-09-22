@@ -7,7 +7,7 @@ import "@mantine/core/styles.css";
 function App() {
   return (
     <React.Fragment>
-      <MantineProvider>
+      <MantineProvider defaultColorScheme="dark">
         <BrowserRouter>
           <Routes>
               <Route path="/" element={<About />} />

@@ -1,11 +1,12 @@
 import React from "react";
 import Layout from "../layout/Layout";
+import { AboutSection } from "../components";
 
 const About = (): React.JSX.Element => {
   return (
     <React.Fragment>
       <Layout>
-        <div>Index Page</div>
+        <AboutSection />
       </Layout>
     </React.Fragment>
   );

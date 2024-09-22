@@ -12,8 +12,12 @@ const ProfileCard = (): React.JSX.Element => {
   const { data } = useFetch({ url });
 
   useEffect(() => {
-    if (data) {
-      setProfile(data);
+    try {
+      if (data) {
+        setProfile(data);
+      }
+    } catch (error) {
+      console.log(error);
     }
   }, [data]);
 
@@ -43,7 +47,7 @@ const ProfileCard = (): React.JSX.Element => {
                 {response.name}
               </Text>
             </Group>
-            <Text fz="md" mt="xs" className="text-center mb-5">
+            <Text fz="md" mt="xs" className="text-center mb-5 text-gray-500">
               <ReactTyped
                 strings={
                   Array.isArray(response.description)
@@ -144,7 +148,7 @@ const ProfileCard = (): React.JSX.Element => {
                     <IconPhone size={20} />
                   </div>
                   <div className="flex flex-col ">
-                    <Text fz="md" fw={500}>
+                    <Text fz="md" fw={500} className="text-gray-500">
                       Phone
                     </Text>
                     <Text>+92 304 5336488</Text>
@@ -163,7 +167,7 @@ const ProfileCard = (): React.JSX.Element => {
                     <IconMail size={20} />
                   </div>
                   <div className="flex flex-col ">
-                    <Text fz="md" fw={500}>
+                    <Text fz="md" fw={500} className="text-gray-500">
                       Email
                     </Text>
                     <Text>f.sajjad530@gmail.com</Text>
@@ -182,7 +186,7 @@ const ProfileCard = (): React.JSX.Element => {
                     <IconMapPin size={20} />
                   </div>
                   <div className="flex flex-col ">
-                    <Text fz="md" fw={500}>
+                    <Text fz="md" fw={500} className="text-gray-500">
                       Location
                     </Text>
                     <Text>Multan, Punjab, Pakistan</Text>

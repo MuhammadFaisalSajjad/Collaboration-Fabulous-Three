@@ -2,4 +2,7 @@ import Navbar from "./navbar/Navbar";
 import ProfileCard from "./profileCard/ProfileCard";
 import ContactForm from "./contact/ContactForm";
 import ServiceBox from "./servicesbox/ServicesBox";
-export { Navbar, ProfileCard, ContactForm , ServiceBox};
+import AboutSection from "./aboutSection/AboutSection";
+import Footer from "./footer/Footer";
+
+export { Navbar, ProfileCard, ContactForm, ServiceBox, AboutSection, Footer };

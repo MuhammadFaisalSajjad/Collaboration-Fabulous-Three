@@ -73,14 +73,13 @@ const ContactForm = (): React.JSX.Element => {
 
   return (
     <React.Fragment>
-      <Box mt="lg">
+      <Box>
         <form onSubmit={handleSubmit}>
           <Title
-            mt="lg"
             order={2}
-            size="h3"
+            fz="h2"
+            fw={600}
             style={{ fontFamily: "Greycliff CF, var(--mantine-font-family)" }}
-            fw={650}
             ta="left"
           >
             Let's get in touch

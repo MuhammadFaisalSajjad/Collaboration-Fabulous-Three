@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Container } from "@mantine/core";
-import { Navbar, ProfileCard } from "../components";
+import { Footer, Navbar, ProfileCard } from "../components";
 import { LayoutProp } from "../types";
 import "./index.css";
 
@@ -26,6 +26,7 @@ const Layout = ({ children }: LayoutProp): React.JSX.Element => {
           </Grid.Col>
           <Grid.Col span={{ base: 12, xs: 7 }}>
             {children}
+            <Footer/>
           </Grid.Col>
         </Grid>
       </Container>
