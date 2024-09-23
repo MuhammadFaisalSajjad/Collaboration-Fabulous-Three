@@ -5,6 +5,7 @@ const projectRoutes = require("./project.route");
 const profileRoutes = require("./profile.route");
 const aboutRoutes = require("./about.route");
 const experienceRoutes = require("./experience.route");
+const serviceRouter = require("./service.route");
 
 const router = express.Router();
 
@@ -14,5 +15,6 @@ router.use("/projects", projectRoutes);
 router.use("/profile", profileRoutes);
 router.use("/about", aboutRoutes);
 router.use("/experience", experienceRoutes);
+router.use("/servvices", serviceRouter);
 
 module.exports = router;
