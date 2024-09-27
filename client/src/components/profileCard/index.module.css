@@ -144,3 +144,12 @@ ul {
     var(--mantine-color-dark-5)
   );
 }
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .imgBorder {
+    border-radius: 50%;
+    width: 40% !important;
+    height: auto !important;
+    margin: 0 auto !important;
+  }
+}

@@ -29,7 +29,7 @@
 }
 
 .active {
-  color: light-dark(var(--mantine-color-green-6), var(--mantine-color-green-6));
+  color: light-dark(#A3CB38, #A3CB38);
   font-weight: bold;
   border-radius: 1vw;
 }

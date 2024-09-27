@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { FaHome, FaUserAlt, FaProjectDiagram, FaBriefcase } from "react-icons/fa";
+import { FaHome, FaUserAlt, FaProjectDiagram, FaBriefcase, FaLaptop  } from "react-icons/fa";
 
 function Sidebar() {
   return (
@@ -13,6 +13,7 @@ function Sidebar() {
             { to: "/about", icon: <FaUserAlt />, label: "About" },
             { to: "/projects", icon: <FaProjectDiagram />, label: "Projects" },
             { to: "/experience", icon: <FaBriefcase />, label: "Experience" },
+            { to: "/service", icon: <FaLaptop  />, label: "Service" },
           ].map((item) => (
             <li key={item.to}>
               <NavLink

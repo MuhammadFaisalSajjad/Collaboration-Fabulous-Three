@@ -37,7 +37,11 @@ const ProfileCard = (): React.JSX.Element => {
               alt={response.name}
               height={100}
               radius={200}
-              className={classes.imgBorder}
+              className={`${classes.imgBorder} md:rounded-full`}
+              style={{
+                width: "100%",
+                height: "auto",
+              }}
             />
           </Card.Section>
 

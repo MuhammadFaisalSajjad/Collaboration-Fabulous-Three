@@ -4,7 +4,7 @@ import {
   Textarea,
   SimpleGrid,
   Group,
-  Title,
+  Text,
   Button,
   Box,
 } from "@mantine/core";
@@ -75,16 +75,12 @@ const ContactForm = (): React.JSX.Element => {
     <React.Fragment>
       <Box>
         <form onSubmit={handleSubmit}>
-          <Title
-            order={2}
-            fz="h2"
-            fw={600}
-            style={{ fontFamily: "Greycliff CF, var(--mantine-font-family)" }}
-            ta="left"
-          >
-            Let's get in touch
-          </Title>
-
+        <div className="flex items-center">
+            <Text fz="h2" fw={700}>
+              CONTACT
+            </Text>
+            <hr className="border-gray-600 w-[30vw] -z-10 relative right-20 " />
+          </div>
           <SimpleGrid cols={{ base: 1, sm: 2 }} mt="xl">
             <TextInput
               size="lg"

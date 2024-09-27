@@ -15,6 +15,6 @@ router.use("/projects", projectRoutes);
 router.use("/profile", profileRoutes);
 router.use("/about", aboutRoutes);
 router.use("/experience", experienceRoutes);
-router.use("/servvices", serviceRouter);
+router.use("/services", serviceRouter);
 
 module.exports = router;

@@ -95,104 +95,108 @@ function Home() {
   };
 
   return (
-    <div className="p-8 bg-gradient-to-r from-gray-800 to-gray-700 rounded-lg shadow-lg">
-      <div className="text-center">
-        {profile.map((data) => (
-          <div key={data._id}>
-            <img
-              src={data.avatar}
-              alt="Profile"
-              className="rounded-full w-32 h-32 mx-auto mb-4 border-4 border-teal-500"
-            />
-            <h2 className="text-4xl font-extrabold mb-2 text-white">
-              {data.name}
-            </h2>
-            <p className="text-lg mb-4 text-white">
-              {Array.isArray(data.description)
-                ? data.description.join(", ")
-                : data.description.split(",").map((item) => item.trim().join(", "))}
-            </p>
-            <Button
-              onClick={() => openModal(data)}
-              color="gradient"
-              className="text-white"
-            >
-              <FaEdit /> Edit
-            </Button>
-          </div>
-        ))}
-      </div>
+    <>
+      <div className="p-8 bg-gradient-to-r from-gray-800 to-gray-700 rounded-lg shadow-lg">
+        <div className="text-center">
+          {profile.map((data) => (
+            <div key={data._id}>
+              <img
+                src={data.avatar}
+                alt="Profile"
+                className="rounded-full w-32 h-32 mx-auto mb-4 border-4 border-teal-500"
+              />
+              <h2 className="text-4xl font-extrabold mb-2 text-white">
+                {data.name}
+              </h2>
+              <p className="text-lg mb-4 text-white">
+                {Array.isArray(data.description)
+                  ? data.description.join(", ")
+                  : data.description
+                      .split(",")
+                      .map((item) => item.trim().join(", "))}
+              </p>
+              <Button
+                onClick={() => openModal(data)}
+                color="gradient"
+                className="text-white"
+              >
+                <FaEdit /> Edit
+              </Button>
+            </div>
+          ))}
+        </div>
 
-      {/* Modal */}
-      {selectedProfile ? (
-        <Modal
-          isOpen={isOpen}
-          onOpenChange={onOpenChange}
-          placement="top-center"
-        >
-          <ModalContent>
-            {(onClose) => (
-              <>
-                <ModalHeader className="text-xl font-semibold">
-                  Edit Profile
-                </ModalHeader>
-                <ModalBody>
-                  <Input
-                    autoFocus
-                    label="Name"
-                    name="name"
-                    type="text"
-                    variant="bordered"
-                    value={selectedProfile.name}
-                    onChange={handleInputChange}
-                  />
-                  <Textarea
-                    label="Description"
-                    name="description"
-                    type="text"
-                    variant="bordered"
-                    value={
-                      selectedProfile.description
-                        ? selectedProfile.description.join(", ")
-                        : ""
-                    }
-                    onChange={handleInputChange}
-                  />
-                  <Image
-                    alt={selectedProfile.name}
-                    className="object-cover rounded-xl"
-                    src={selectedProfile.avatar}
-                    width={270}
-                  />
-                  <input
-                    id="file-input"
-                    type="file"
-                    name="avatar"
-                    onChange={handleInputChange}
-                  />
-                </ModalBody>
-                <ModalFooter>
-                  <Button color="error" variant="flat" onPress={onClose}>
-                    Close
-                  </Button>
-                  <Button
-                    color="gradient"
-                    onPress={onClose}
-                    onClick={() => {
-                      onUpdate(selectedProfile._id);
-                    }}
-                  >
-                    Save Changes
-                  </Button>
-                </ModalFooter>
-              </>
-            )}
-          </ModalContent>
-        </Modal>
-      ) : (
-        <></>
-      )}
-    </div>
+        {/* Modal */}
+        {selectedProfile ? (
+          <Modal
+            isOpen={isOpen}
+            onOpenChange={onOpenChange}
+            placement="top-center"
+          >
+            <ModalContent>
+              {(onClose) => (
+                <>
+                  <ModalHeader className="text-xl font-semibold">
+                    Edit Profile
+                  </ModalHeader>
+                  <ModalBody>
+                    <Input
+                      autoFocus
+                      label="Name"
+                      name="name"
+                      type="text"
+                      variant="bordered"
+                      value={selectedProfile.name}
+                      onChange={handleInputChange}
+                    />
+                    <Textarea
+                      label="Description"
+                      name="description"
+                      type="text"
+                      variant="bordered"
+                      value={
+                        selectedProfile.description
+                          ? selectedProfile.description.join(", ")
+                          : ""
+                      }
+                      onChange={handleInputChange}
+                    />
+                    <Image
+                      alt={selectedProfile.name}
+                      className="object-cover rounded-xl"
+                      src={selectedProfile.avatar}
+                      width={270}
+                    />
+                    <input
+                      id="file-input"
+                      type="file"
+                      name="avatar"
+                      onChange={handleInputChange}
+                    />
+                  </ModalBody>
+                  <ModalFooter>
+                    <Button color="error" variant="flat" onPress={onClose}>
+                      Close
+                    </Button>
+                    <Button
+                      color="gradient"
+                      onPress={onClose}
+                      onClick={() => {
+                        onUpdate(selectedProfile._id);
+                      }}
+                    >
+                      Save Changes
+                    </Button>
+                  </ModalFooter>
+                </>
+              )}
+            </ModalContent>
+          </Modal>
+        ) : (
+          <></>
+        )}
+      </div>
+    </>
   );
 }
 

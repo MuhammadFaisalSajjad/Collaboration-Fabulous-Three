@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MantineProvider } from "@mantine/core";
-import { About, Contact, Resume, Services, Work } from "./pages";
+import { About, Contact, Services, Work } from "./pages";
 import "@mantine/core/styles.css";
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
           <Routes>
               <Route path="/" element={<About />} />
               <Route path="/services" element={<Services />} />
-              <Route path="/resume" element={<Resume />} />
+              {/* <Route path="/resume" element={<Resume />} /> */}
               <Route path="/work" element={<Work />} />
               <Route path="/contact" element={<Contact />} />
           </Routes>

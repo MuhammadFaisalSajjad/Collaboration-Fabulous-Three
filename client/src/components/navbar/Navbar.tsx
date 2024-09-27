@@ -104,7 +104,7 @@ const Navbar = (): React.JSX.Element => {
   return (
     <React.Fragment>
       <Box
-      className={classes.border}
+        className={classes.border}
         style={{
           borderRadius: "1vw",
           padding: "1vw",
@@ -117,7 +117,9 @@ const Navbar = (): React.JSX.Element => {
           }}
         >
           <Group justify="space-between" h="100%">
-            <MantineLogo size={30} />
+            <Text fz="h2" fw="bolder" className="text-[#A3CB38]">
+              FAISAL
+            </Text>
 
             <Group h="100%" gap={0} visibleFrom="sm">
               <NavLink
@@ -135,14 +137,6 @@ const Navbar = (): React.JSX.Element => {
                 }
               >
                 Services
-              </NavLink>
-              <NavLink
-                to="/resume"
-                className={({ isActive }) =>
-                  isActive ? `${classes.link} ${classes.active}` : classes.link
-                }
-              >
-                Resume
               </NavLink>
               <NavLink
                 to="/work"
@@ -220,14 +214,6 @@ const Navbar = (): React.JSX.Element => {
               }
             >
               Services
-            </NavLink>
-            <NavLink
-              to="/resume"
-              className={({ isActive }) =>
-                isActive ? `${classes.link} ${classes.active}` : classes.link
-              }
-            >
-              Resume
             </NavLink>
             <NavLink
               to="/work"

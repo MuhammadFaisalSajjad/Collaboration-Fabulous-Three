@@ -1,15 +1,10 @@
-import Service from "../models/service.model";
+const Service = require("../models/service.model");
 
 // Create
 const postService = async (req, res) => {
   try {
     const { title, description } = req.body;
-    const icon = {
-      type: req.body.buffer,
-      contentType: req.body.mimetype,
-    };
-
-    const service = await Service.create({ title, description, icon });
+    const service = await Service.create({ title, description });
     res.status(200).json({
       message: "Service Created successfully",
       data: service,
@@ -17,7 +12,7 @@ const postService = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: "Error creating service",
-      error: message.error,
+      error: error.message,
       data: [],
     });
   }
@@ -27,21 +22,14 @@ const postService = async (req, res) => {
 const getService = async (req, res) => {
   try {
     const service = await Service.find({});
-    const formattedService = service.map((data) => {
-      const formattedImage = data.icon.data.toString("base64");
-      return {
-        ...data._doc,
-        icon: `data:${data.icon.contentType};base64,${formattedImage}`,
-      };
-    });
     res.status(200).json({
       message: "Services fetched Successfully",
-      data: formattedService,
+      data: service,
     });
   } catch (error) {
     res.status(500).json({
       message: "Cannot Fetch data",
-      error: message.error,
+      error: error.message,
       data: [],
     });
   }
@@ -51,29 +39,21 @@ const getService = async (req, res) => {
 const putService = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, description } = req.body;
-    const updatedService = { title, description };
-    if (req.file) {
-      updatedService.icon = {
-        data: req.file.buffer,
-        contentType: req.file.mimetype,
-      };
-    }
-    const service = await Service.findByIdAndUpdate(id, updatedService);
+    const service = await Service.findByIdAndUpdate(id, req.body);
     if (!service) {
       res.status(404).json({
         message: "Service Not found",
         data: [],
       });
     }
-    res.status.json({
+    res.status(200).json({
       message: "Service Updated Successfully",
       data: service,
     });
   } catch (error) {
     res.status(500).json({
       message: "Cannot Update data",
-      error: message.error,
+      error: error.message,
       data: [],
     });
   }
@@ -91,7 +71,7 @@ const deleteService = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       message: "Cannot Delete data",
-      error: message.error,
+      error: error.message,
       data: [],
     });
   }
