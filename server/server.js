@@ -11,7 +11,7 @@ const port = process.env.PORT || 3001;
 // Ensure that the environment variable name is the same as in Vercel
 const MONGODB_URL = process.env.MONGODB_URL;  // Use the correct environment variable
 
-// Middleware
+// Middleware 
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
