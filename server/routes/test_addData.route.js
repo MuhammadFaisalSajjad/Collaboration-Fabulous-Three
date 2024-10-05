@@ -7,7 +7,7 @@ const router = express.Router();
 const User = mongoose.model('User', new mongoose.Schema({ name: String }));
 
 // Define the `/add-data` route
-router.get("/add-data", async (req, res) => {
+router.get("./test_addData.route", async (req, res) => {
   const { name } = req.query;
   
   if (!name) {
