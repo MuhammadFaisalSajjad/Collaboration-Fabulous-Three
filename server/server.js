@@ -1,4 +1,3 @@
-// require('dotenv').config({ path: './server.env' });
 
 require("dotenv").config();
 const express = require("express");
@@ -16,8 +15,6 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
-
-console.log("MongoDB URI:", MONGODB_URI);
 
 
 //DB Connection
