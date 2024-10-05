@@ -8,7 +8,7 @@ const dbConnection = require("./database/database");
 
 const app = express();
 const port = process.env.PORT || 3001;
-const MONGODB_URI = process.env.MONGO_URI;
+const MONGODB_URL = process.env.MONGO_URI;
 
 //Middleware
 app.use(express.json());
