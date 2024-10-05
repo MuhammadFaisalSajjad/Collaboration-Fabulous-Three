@@ -7,10 +7,15 @@ const aboutRoutes = require("./about.route");
 const experienceRoutes = require("./experience.route");
 const serviceRouter = require("./service.route");
 
-//  following is for postman testing
-const addDataRoutes = require("./test_addData.route"); 
+// Define the router first
+const router = express.Router(); // Initialize router here
 
-const router = express.Router();
+// Postman testing route
+const addDataRoutes = require("./test_addData.route");
+router.use("/add-data", addDataRoutes);
+
+
+// const router = express.Router();
 
 router.use("/auth", authRoutes);
 router.use("/skills", skillRoutes);

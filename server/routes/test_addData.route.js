@@ -7,13 +7,13 @@ const router = express.Router();
 const User = mongoose.model('User', new mongoose.Schema({ name: String }));
 
 // Define the `/add-data` route
-router.get("./test_addData.route", async (req, res) => {
+router.get("/", async (req, res) => {
   const { name } = req.query;
-  
+
   if (!name) {
     return res.status(400).send("Name is required");
   }
-  
+
   try {
     const user = new User({ name });
     await user.save();
